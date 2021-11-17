@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dawnleblanc11/myreadmemaker/issues"
   },
-  "homepage": "https://github.com/dawnleblanc11/myreadmemaker#readme"
+  "homepage": "https://github.com/dawnleblanc11/myreadmemaker#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
 }
