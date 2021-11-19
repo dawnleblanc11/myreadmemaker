@@ -4,12 +4,16 @@ const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
 const path = require('path');
 
-// TODO: Create an array of questions for user input
-// Add Questions for project title, Description: description, Installation: installation instructions, Usage: usage information, Contributing: contribution guidelines, Tests: test instructions;
-// License: Choose from a list of options add badge to top of readme
-// Questions: GitHub User Name, Link to GitHub Profile, Email Address
-// Links in Table of Contents bring you to section of the READme
- 
+
+// add more license options if time permits
+//'GNU General Public License (GPL)', 
+//'GNU Library or "Lesser" General Public License (LGPL)', 
+// 'Common Development and Distribution License',
+// 'Eclipse Public License version 2.0' 
+// clean up edtis on questions
+
+
+// TODO: Create an array of questions for user input 
 const questionObject= function() {
   return inquirer.prompt([
     {
@@ -107,8 +111,8 @@ const questionObject= function() {
     type: 'checkbox',
       name: 'license',
       message: 'Add a license to let other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/)',
-      choices:['Apache License 2.0','BSD 3-Clause "New" or "Revised" license', 'BSD 2-Clause "Simplified" or "FreeBSD" license','GNU General Public License (GPL)', 
-      'GNU Library or "Lesser" General Public License (LGPL)', 'MIT license', 'Mozilla Public License 2.0', 'Common Development and Distribution License', 'Eclipse Public License version 2.0' ],
+      choices:['Apache License 2.0','MIT license','BSD 3-Clause "New" or "Revised" license', 'BSD 2-Clause "Simplified" or "FreeBSD" license', 
+      'Mozilla Public License 2.0' ],
       validate: licenseutilizedInput => {
         if (licenseutilizedInput) {
           return true;
@@ -189,12 +193,12 @@ const questionObject= function() {
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-  return fs.writeFileSync(path.join(__dirname,fileName),data)
+function writeToFile(fileName, content) {
+  return fs.writeFileSync(path.join(__dirname,fileName),content)
 }
 
 // TODO: Create a function to initialize app
-function init() {
+function init() { 
   questionObject().then(readmedata => {
     console.log(readmedata);
     writeToFile('README.md',generateMarkdown(readmedata));
