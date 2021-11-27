@@ -4,19 +4,19 @@ const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
 const path = require('path');
 
-
 // add more license options if time permits
 //'GNU General Public License (GPL)', 
 //'GNU Library or "Lesser" General Public License (LGPL)', 
 // 'Common Development and Distribution License',
 // 'Eclipse Public License version 2.0' 
-// clean up edtis on questions
+// clean up edits on questions
 
 
 // TODO: Create an array of questions for user input 
 const questionObject= function() {
   return inquirer.prompt([
     {
+
       type: 'input',
       name: 'projectName',
       message: 'What is the title of your project? (Required)',
@@ -108,7 +108,7 @@ const questionObject= function() {
       }
     },
     {
-    type: 'checkbox',
+    type: 'list',
       name: 'license',
       message: 'Add a license to let other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/)',
       choices:['Apache License 2.0','MIT license','BSD 3-Clause "New" or "Revised" license', 'BSD 2-Clause "Simplified" or "FreeBSD" license', 
@@ -123,14 +123,15 @@ const questionObject= function() {
       }
     },
     {
-      type: 'input',
+      type: 'checkbox',
         name: 'badges',
-        message: 'Badges let other developers know that you know what you are doing.',
-        validate: badgesInput => {
+        message: 'Badges let other developers know the languages you used or other key points',
+        choices:['HTML','CSS','Javascript','Bootstrap', 'jQuery', 'Node'],
+      validate: badgesInput => {
           if (badgesInput) {
             return true;
           } else {
-            console.log('Please enter features!');
+            console.log('Please select a badge!');
             return false;
           }
         }
@@ -185,6 +186,7 @@ const questionObject= function() {
               } else {
                 console.log('Please enter your email address!');
                 return false;
+                
               }
             }
           },
