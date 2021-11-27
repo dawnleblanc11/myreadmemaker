@@ -12,7 +12,6 @@ var liLink = "";
 var liBadge = "";
 var liComplete = "";
 
-
 function renderLicense(license) {
   switch (license) {
     case "Apache License 2.0":
@@ -40,6 +39,15 @@ function renderLicense(license) {
       liBadge =
         "![License](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)";
       break;
+    case "GNU General Public License (GPL)":
+      liLink = "https://www.gnu.org/licenses/gpl-3.0";
+      liBadge =
+        "![License](https://img.shields.io/badge/License-GPLv3-blue.svg)";
+      break;
+    case "Eclipse Public License version 2.0":
+      liLink = "https://opensource.org/licenses/EPL-1.0";
+      liBadge = "![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)";
+      break;
     default:
       liLink = "";
       liBadge = "";
@@ -53,55 +61,63 @@ function renderLicenseSection(liBadge, liLink) {
   } else {
     liComplete = "## Licenses <br>" + liLink;
   }
-};
+}
 // Bonus: Create a section that add badges to the readme
-var shieldDisplayarray=[];
-var shieldComplete=[];
-var shieldHeader= "";
+var shieldDisplayarray = [];
+var shieldComplete = [];
+var shieldHeader = "";
 
 function renderShield(selectedbadges) {
-var shieldArray = [
+  var shieldArray = [
     {
-      language: 'HTML',
-      shieldlink: '![Shield:HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)'
+      language: "HTML",
+      shieldlink:
+        "![Shield:HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)",
     },
     {
-      language: 'Javascript',
-      shieldlink: '![Shield:Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)' 
+      language: "Javascript",
+      shieldlink:
+        "![Shield:Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)",
     },
     {
-      language: 'CSS',
-      shieldlink: '![Shield:CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)' 
+      language: "CSS",
+      shieldlink:
+        "![Shield:CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)",
     },
     {
-      language: 'JQuery',
-      shieldlink: '![Shield:jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)' 
+      language: "jQuery",
+      shieldlink:
+        "![Shield:jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)",
     },
     {
-      language: 'Bootstrap',
-      shieldlink: '![Shield:Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)' 
+      language: "Bootstrap",
+      shieldlink:
+        "![Shield:Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)",
+    },
+    {
+      language: "Node",
+      shieldlink:
+        "![Shield:Node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)",
     },
   ];
 
   //returns true or false if included
-for (let i=0; i<shieldArray.length;i++) {
-  if (selectedbadges.includes(shieldArray[i].language)) {
-  shieldDisplayarray.push(shieldArray[i]);
-    } 
+  for (let i = 0; i < shieldArray.length; i++) {
+    if (selectedbadges.includes(shieldArray[i].language)) {
+      shieldDisplayarray.push(shieldArray[i]);
+    }
   }
-};
-function renderShieldSection(selectedbadges,shieldDisplayarray) {
+}
+function renderShieldSection(selectedbadges, shieldDisplayarray) {
   if (!shieldDisplayarray) {
     shieldComplete = [];
   } else {
-    for (let i=0; i<selectedbadges.length;i++) {
-    shieldComplete.push(shieldDisplayarray[i].shieldlink);
+    for (let i = 0; i < selectedbadges.length; i++) {
+      shieldComplete.push(shieldDisplayarray[i].shieldlink);
     }
-    shieldHeader= ("## Badges <br>");
+    shieldHeader = "## Badges <br>";
   }
-  };
-
-
+}
 
 // TODO: Create a function to generate markdown for README
 // Allow starting with badges to be optional
@@ -113,7 +129,7 @@ function generateMarkdown(data) {
   renderLicenseSection(liBadge, liLink);
   var selectedbadges = data.badges;
   renderShield(selectedbadges);
-  renderShieldSection(selectedbadges,shieldDisplayarray);
+  renderShieldSection(selectedbadges, shieldDisplayarray);
   return (
     `
   ${liBadge}
@@ -143,11 +159,10 @@ function generateMarkdown(data) {
   You can reach me for additional questions at:
   * GitHub: [${data.githubName}](https://github.com/${data.githubLink})
   * Email: ${data.emailAddress}
-`
-+
-[shieldHeader]+
-[shieldComplete] + 
- ` 
+` +
+    [shieldHeader] +
+    [shieldComplete] +
+    ` 
     
   ## Features
   ${data.features}

@@ -4,13 +4,6 @@ const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
 const path = require('path');
 
-// add more license options if time permits
-//'GNU General Public License (GPL)', 
-//'GNU Library or "Lesser" General Public License (LGPL)', 
-// 'Common Development and Distribution License',
-// 'Eclipse Public License version 2.0' 
-// clean up edits on questions
-
 
 // TODO: Create an array of questions for user input 
 const questionObject= function() {
@@ -32,7 +25,7 @@ const questionObject= function() {
     {
       type: 'input',
       name: 'projectDesription',
-      message: 'a short description explaining the what, why, and how. What was your motivation? Why did you build this project?',
+      message: 'Short description explaining the what, why, and how this project came about?',
       validate: projectdescriptionInput => {
         if (projectdescriptionInput) {
           return true;
@@ -58,7 +51,7 @@ const questionObject= function() {
     {
       type: 'input',
       name: 'installationInstructions',
-      message: 'What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.',
+      message: 'What are the steps required to install your project?',
       validate: installationinstructionsInput => {
         if (installationinstructionsInput) {
           return true;
@@ -71,7 +64,7 @@ const questionObject= function() {
     {
     type: 'input',
       name: 'usageInformation',
-      message: 'Provide instructions and examples for use. Include screenshots as needed.',
+      message: 'Provide instructions and examples for use. ',
       validate: usageinformationInput => {
         if (usageinformationInput) {
           return true;
@@ -112,7 +105,7 @@ const questionObject= function() {
       name: 'license',
       message: 'Add a license to let other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/)',
       choices:['Apache License 2.0','MIT license','BSD 3-Clause "New" or "Revised" license', 'BSD 2-Clause "Simplified" or "FreeBSD" license', 
-      'Mozilla Public License 2.0' ],
+      'Mozilla Public License 2.0', 'GNU General Public License (GPL)', 'Eclipse Public License version 2.0'],
       validate: licenseutilizedInput => {
         if (licenseutilizedInput) {
           return true;
@@ -139,7 +132,7 @@ const questionObject= function() {
     {
       type: 'input',
         name: 'features',
-        message: 'If your project has a lot of features, consider listing features here.',
+        message: 'If your project has many features, consider listing features here.',
         validate: featuresInput => {
           if (featuresInput) {
             return true;
@@ -152,7 +145,7 @@ const questionObject= function() {
     {
       type: 'input',
         name: 'contributionGuidelines',
-        message: 'If you created an application or package and would like other developers to contribute it, you will want to add guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own.',
+        message: 'Would you like other developers to contribute it, add guidelines for how to do so.',
         validate: contributionguidelinesInput => {
           if (contributionguidelinesInput) {
             return true;
@@ -202,7 +195,6 @@ function writeToFile(fileName, content) {
 // TODO: Create a function to initialize app
 function init() { 
   questionObject().then(readmedata => {
-    console.log(readmedata);
     writeToFile('README.md',generateMarkdown(readmedata));
   })}
 
