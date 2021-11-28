@@ -1,6 +1,6 @@
 
   ![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)
-  ![Sample](https://drive.google.com/file/d/11U2HLEgPGiDhqOwenDq8sKrMmaBPkrD1/view?usp=sharing) 
+  https://drive.google.com/file/d/11U2HLEgPGiDhqOwenDq8sKrMmaBPkrD1/view?usp=sharing
   # Project One
   ### This is the first project
   ## Table of Contents
