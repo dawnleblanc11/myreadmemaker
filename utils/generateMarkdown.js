@@ -59,7 +59,7 @@ function renderLicenseSection(liBadge, liLink) {
   if (!liBadge || !liLink) {
     liComplete = "";
   } else {
-    liComplete = "## Licenses <br>" + liLink;
+    liComplete = "## License <br>" + liLink;
   }
 }
 // Bonus: Create a section that add badges to the readme
